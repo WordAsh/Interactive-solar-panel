@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block content%}
+    <div class="align-content-md-center tex content-section">
+        <h5>Current time:</h5>
+        <div class="text-info" id="datetime"></div>
+    </div>
+    <table class="table-striped table-bordered " style="width: 100%;">
+        <tr>
+            <th class="table-primary text-center">Solar Altitude</th>
+            <td class="text-center">{{ altitude }}</td>
+        </tr>
+        <tr>
+            <th rowspan="2" class="table-primary text-center">Rod Length</th>
+            <td class="text-center" id="len1">{{ len1 }}</td>
+        </tr>
+        <tr>
+            <td class="text-center" id="len2">{{ len2 }}</td>
+        </tr>
+<!--        <tr>-->
+<!--            <th rowspan="2" class="table-primary text-center">Panel Rotation Angle</th>-->
+<!--            <td class="text-center">{{ ang1 }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td class="text-center">{{ ang2 }}</td>-->
+<!--        </tr>-->
+    </table>
+{% endblock content %}
+{% block content3 %}
+    <div class="col-md-4">
+        <div class="content-section">
+            <fieldset>
+                <legend class="bg-light">User Dashboard</legend>
+                <div class="content-section">
+                    <label>Automatic Mode: <input type="radio" id="auto" name="radio" value="1"></label>
+                    <label>Manual Mode: <input type="radio" id="manual" name="radio" value="2" checked="True"></label><br>
+                    <form action="{{ url_for('main.redirect_to_auto') }}" method="POST">
+                        <button type="submit" class="guilabel border-dark">Switch</button>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+{% endblock %}

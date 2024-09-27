@@ -1,0 +1,87 @@
+{% extends "index.html" %}
+{% block content%}
+    <div class="align-content-md-center tex content-section">
+        <h5>Current time:</h5>
+        <div class="text-info" id="datetime"></div>
+    </div>
+    <table class="table-striped table-bordered " style="width: 100%;">
+        <tr>
+            <th class="table-primary text-center">Solar Altitude</th>
+            <td class="text-center">{{ altitude }}</td>
+        </tr>
+        <tr>
+            <th rowspan="2" class="table-primary text-center">Rod Length</th>
+            <td class="text-center">{{ len1 }}</td>
+        </tr>
+        <tr>
+            <td class="text-center">{{ len2 }}</td>
+        </tr>
+        <tr>
+            <th rowspan="2" class="table-primary text-center">Panel Rotation Angle</th>
+            <td class="text-center">{{ ang1 }}</td>
+        </tr>
+        <tr>
+            <td class="text-center">{{ ang2 }}</td>
+        </tr>
+    </table>
+    <div class="content-section">
+        <h5>Panel Status 2D:</h5>
+        <img src="{{ url_for('static',filename='images/' + alt + '-2.jpg')}}" alt="test" style="width: 100%">
+        <h5>Panel Status 3D:</h5>
+        <img src="{{ url_for('static',filename='images/' + alt + '-3.jpg') }}" alt="test" style="width: 100%">
+    </div>
+{% endblock content %}
+{% block content3 %}
+    <div class="col-md-4">
+        <div class="content-section">
+            <fieldset>
+                <legend class="bg-light">User Dashboard</legend>
+                <div class="content-section">
+                    <label>Automatic Mode: <input type="radio" id="auto" name="radio" value="1"></label>
+                    <label>Manual Mode: <input type="radio" id="manual" name="radio" value="2" checked="True"></label><br>
+                    <form action="{{ url_for('main.redirect_to_auto') }}" method="POST">
+                        <button type="submit" class="guilabel border-dark">Switch</button>
+                    </form>
+                </div>
+                <hr style="color: #5f788a">
+                <div class="content-section">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Rod Length</legend>
+                            <div class="form-group">
+                                {{ form.length1.label(class="form-control-label") }}
+                                {% if form.length1.errors %}
+                                    {{ form.length1(class="form.control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.length1.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.length1(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.length2.label(class="form-control-label") }}
+                                {% if form.length2.errors %}
+                                    {{ form.length2(class="form.control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.length2.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.length2(class="form-control form-control-lg") }}
+                                {% endif %}
+                            </div>
+                        </fieldset>
+                        <div class="form-group mt-2">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+{% endblock %}

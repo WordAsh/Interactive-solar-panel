@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "PoQiNFgpQ0d1afeCj/IX0MJ0IX18UrGP6H1JG0+0oljd6yBKh/c/2p4P3EcxxZ8ZBPn4DmgBVrJA8yzw+PQMEQ==",
+  "success": true,
+  "projectFilePath": "E:\\SEU\\InteractiveDesign\\model\\SunLigthRef\\SunLigthRef\\SunLigthRef.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Rigon\\.nuget\\packages\\grasshopper\\7.13.21348.13001\\grasshopper.7.13.21348.13001.nupkg.sha512",
+    "C:\\Users\\Rigon\\.nuget\\packages\\rhinocommon\\7.13.21348.13001\\rhinocommon.7.13.21348.13001.nupkg.sha512"
+  ],
+  "logs": []
+}

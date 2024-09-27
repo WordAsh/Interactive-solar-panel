@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}">
+    {% if title %}
+        <title>Interactive Reflection - {{ title }}</title>
+    {% else %}
+        <title>Interactive Reflection</title>
+    {% endif %}
+    <script>
+        setInterval(getTime,1000)
+        function getTime(){
+            // var date = new Date();
+            // var dt = date.toLocaleString();
+            let time = new Date();
+            let year = time.getFullYear()+"/";
+            let month = time.getMonth() + 1+"/";
+            let day = time.getDate()+"/";
+            let h = time.getHours()+":";
+            let m = time.getMinutes()+":";
+            let s = time.getSeconds();
+            if(s<10){
+                s = "0" + time.getSeconds();
+            }
+            if(time.getMinutes()<10){
+                m = "0" + time.getMinutes() + ":"
+            }
+            document.getElementById("datetime").innerHTML = year + month + day + h + m + s ;
+        }
+    </script>
+</head>
+<body onload="getTime()">
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{{ url_for('main.home') }}">Interactive Reflection</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+          {% block content3 %}{% endblock %}
+      </div>
+    </main>
+    <script src="{{ url_for('static',filename='bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap.min.js') }}"></script>
+
+</body>
+</html>
